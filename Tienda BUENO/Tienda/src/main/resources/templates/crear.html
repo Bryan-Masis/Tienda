@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> <!-- importamos funcionalidades o atributos de lo que es thymeleaf -->
+    <head th:replace="plantilla/template::head"></head>
+    <body>
+        <header th:replace="plantilla/template::header"></header>
+        <form th:object = "${persona}"
+              th:action="@{/save}"
+              method="POST"
+              >
+            <input type="hidden" th:field="*{id}"> <!-- esto soluciona que se modifique la persona -->
+            <div>
+                <label for="nombre">Nombre</label>
+                <input type="text" th:field="*{nombre}"  placeholder= "Nombre Cliente" id="nombres" aria-describedby="emailHelp">
+            </div>
+            <div>
+                <label for="apellido1">Primer Apellido</label>
+                <input type="text" th:field="*{apellido1}"  placeholder= "Primer Apellido Cliente" id="apellido1" aria-describedby="emailHelp">
+            </div>
+            <div>
+                <label for="apellido2">Segundo Apellido</label>
+                <input type="text" th:field="*{apellido2}"  placeholder= "Segundo Apellido Cliente" id="apellido2" aria-describedby="emailHelp">
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="email" th:field="*{email}"  placeholder= "Email Cliente" id="email" aria-describedby="emailHelp">
+            </div>
+            <div>
+                <label for="Telfono">Telefono</label>
+                <input type="text" th:field="*{telefono}"  placeholder= "Telefono Cliente" id="telefono" aria-describedby="emailHelp">
+            </div>
+            <div>
+                <label for="pais">Pais</label>
+                <select th:field="*{pais}">
+                    <option th:each="x:${paises}"
+                            th:value="${x.id}"
+                            th:text="${x.pais}"> 
+                    </option>
+                </select>
+            </div>
+            <button type="submit" value="Guardar">Submit</button>
+        </form>
+        <footer th:replace="plantilla/template::footer"></footer>
+    </body>
+</html>
